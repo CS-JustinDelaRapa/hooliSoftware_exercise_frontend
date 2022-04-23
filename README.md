@@ -1,3 +1,14 @@
+This is partial requirement for HooliSoftware internship fullstack exercise,
+techs that is used for this repository are FF:
+-react Js
+-Typescript
+-Tailwind css
+-Redux
+-Redux-saga
+-Redux=toolkit
+-React-form-hooks
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
