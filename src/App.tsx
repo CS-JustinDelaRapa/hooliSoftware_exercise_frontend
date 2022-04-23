@@ -1,5 +1,4 @@
-import api from './API/Todos';
-import { useEffect, useState } from 'react';
+import { useEffect} from 'react';
 import './App.css';
 import HeaderAdd from './Components/HeaderAdd';
 import ListOfTodos from './Components/ListOfTodos';
@@ -22,15 +21,14 @@ function App() {
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = todosSaga.slice(indexOfFirstPost,indexOfLastPost);
 
-  console.log(currentPosts)
-
   useEffect(()=>{
-    console.log('at get all')
     dispatch(typeGetAllFetch());
   },[]);
 
   if(isLoading){
-    return <h1>Loading</h1>
+    return <div className='modal-container'>
+    <h1 className='text'>Working on it...</h1>
+    </div>
   }
 
   return (

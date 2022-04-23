@@ -9,7 +9,7 @@
     }
 
     .header-table{
-        @apply bg-gray-400 rounded-t-md h-10 mb-3
+        @apply hidden md:bg-gray-400 rounded-t-md h-10 mb-3
     }
 
     /*buttons */
@@ -35,11 +35,19 @@
     /*flex box */
 
     .flexbox-container{
-        @apply  sm:flex items-center justify-between 
+        @apply  md:flex items-center md:justify-between
+    }
+
+    .flex-portion{
+        @apply md:w-1/5
+    }
+
+    .flex-portion-des{
+        @apply md:w-2/5
     }
 
     .flexbox-item{
-        @apply m-1 flex items-center px-2
+        @apply m-1 flex justify-center md:justify-start items-center px-2
     }
 
     .box{
@@ -54,7 +62,7 @@
     }
 
     .text{
-        @apply text-base font-medium text-gray-900 whitespace-nowrap
+        @apply text-base font-bold md:font-medium text-gray-900 whitespace-nowrap
     }
 
     .text-button{

@@ -28,15 +28,11 @@ function* getSingleTodo(action : any){
 }
 
 function* deleteTodo(action : any){   
-    console.log('at delete todo')
-    console.log(action.payload)
     yield call(() =>  api.delete(`/${action.payload.id}`));
     yield put({type:'todoReducersSlice/reducerDeleteTodo', payload: action.payload.id})
 }
 
 function* addTodo(action : any){   
-    console.log('at add todo')
-    console.log(action.payload)
     yield call(()=>api.post('/', action.payload))
     const allTodos: AxiosResponse = yield call(() =>  api.get(`/`));
     const finalTodo: todo[] = yield allTodos.data;
@@ -44,8 +40,6 @@ function* addTodo(action : any){
 }
 
 function* updateTodo(action : any){   
-    console.log('at update todo')
-    console.log(action.payload)
     yield call(() =>  api.put('/'+action.payload.id, action.payload));
     yield put({type:'todoReducersSlice/reducerUpdateTodo', payload: action.payload})
 }

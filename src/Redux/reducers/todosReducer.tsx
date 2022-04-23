@@ -1,13 +1,13 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { stat } from "fs";
 import {todo} from '../../objectType/todo';
 
 interface todoState {
     todos: todo[],
     isLoading: boolean
+    sortNew: boolean
 }
 
-const initialState = {todos: [], isLoading: false} as todoState
+const initialState = {todos: [], isLoading: false, sortNew: true} as todoState
   
 const todosSlice = createSlice({
     name: 'todoReducersSlice',
@@ -26,8 +26,10 @@ const todosSlice = createSlice({
             state.isLoading = true
         },        
         reducerGetAllSuccess: (state, action: PayloadAction<todo[]>)=>{
-            console.log('at success')
-            state.todos = action.payload;
+            const tempArr = action.payload.sort((a, b)=>
+                (new Date(a.targetDate) < new Date(b.targetDate)? -1 : 1)
+            )
+            state.todos = tempArr
             state.isLoading = false
         },
         reducerDeleteTodo:(state, action)=>{
@@ -44,9 +46,16 @@ const todosSlice = createSlice({
                 })
             state.todos = temp
             state.isLoading = false
+        },
+        reducerSortTodo:(state)=>{
+            state.sortNew = !state.sortNew
+            const tempArr = state.sortNew? state.todos.sort((a, b)=>
+            (new Date(a.targetDate) < new Date(b.targetDate)? -1 : 1)) : state.todos.sort((a, b)=>
+            (new Date(a.targetDate) < new Date(b.targetDate)? 1 : -1))
+            state.todos = tempArr
         }
     }
 })
 export const {typeGetAllFetch, typeDeleteTodo, typeAddTodo, typeUpdateTodo,
-            reducerGetAllSuccess, reducerDeleteTodo, reducerAddTodo, reducerUpdateTodo} = todosSlice.actions;
+            reducerGetAllSuccess, reducerDeleteTodo, reducerAddTodo, reducerUpdateTodo, reducerSortTodo} = todosSlice.actions;
 export default todosSlice
